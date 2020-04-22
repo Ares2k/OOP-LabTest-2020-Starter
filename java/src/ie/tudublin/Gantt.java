@@ -23,7 +23,7 @@ public class Gantt extends PApplet
 
 	public void loadTasks()
 	{
-		Table t = loadTable("C:\\Users\\User\\Desktop\\OOP-LabTest-2020-Starter\\java\\data\\tasks.csv", "header");
+		Table t = loadTable("tasks.csv", "header");
 		
 		for(TableRow row: t.rows()) {
 
