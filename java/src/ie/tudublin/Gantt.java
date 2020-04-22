@@ -25,7 +25,7 @@ public class Gantt extends PApplet
 	{
 		Table t = loadTable("C:\\Users\\User\\Desktop\\OOP-LabTest-2020-Starter\\java\\data\\tasks.csv", "header");
 		
-		for(TableRow row:t.rows()) {
+		for(TableRow row: t.rows()) {
 
 			Task task = new Task(row);
 			tasks.add(task);
@@ -86,6 +86,31 @@ public class Gantt extends PApplet
 		}
 	}
 	
+	private void hoverMouse() {
+		
+		float rectHeight = 30;
+		float x1, x2, y1, y2;
+		float size = 20;
+
+		for(int i=0; i<tasks.size(); i++) {
+			
+			float halfHeight = rectHeight / 2;
+			
+			Task task = tasks.get(i);
+			x1 = map(task.getStart(), 1, 30, leftMarg, width - marg);
+			x2 = map(task.getEnd(), 1, 30, leftMarg, width - marg);
+			
+			y1 = map(i, 0, tasks.size(), 2 * marg, height - marg) - halfHeight;
+			y2 = rectHeight + y1;
+
+			if((mouseX > x1 - size && mouseX < x1 + size) || (mouseX < x2 + size && mouseX > x2 - size)) {
+				cursor(HAND);
+  			 } else {
+				cursor(ARROW);
+   			}
+		}
+	}
+
 	public void mousePressed()
 	{
 		println("Mouse pressed");
@@ -168,5 +193,6 @@ public class Gantt extends PApplet
 		colorMode(HSB);
 		background(0);
 		displayTasks();
+		hoverMouse();
 	}
 }
