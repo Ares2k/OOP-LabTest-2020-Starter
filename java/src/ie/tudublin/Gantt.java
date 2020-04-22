@@ -10,6 +10,8 @@ public class Gantt extends PApplet
 {	
 
 	public ArrayList<Task> tasks = new ArrayList<Task>();
+	private float leftMarg;
+	private float marg;
 	
 	public void settings()
 	{
@@ -33,6 +35,27 @@ public class Gantt extends PApplet
 			System.out.println(t);
 		}
 	}
+
+	public void displayTasks() {
+
+		int days = 30;
+		float rectHeight = 50;
+		float rectStart, rectEnd, rectWidth;
+		float radius = 6;
+		float c;
+		float x;
+
+		stroke(255);
+		fill(255);
+		textAlign(CENTER);
+
+		for(int i=1; i<=days; i++) {
+
+			c = map(i, 1, 30, leftMarg, width - marg);
+			line(c, marg, c, height - marg);
+			text(i, c, marg * 0.8f);
+		}
+	}
 	
 	public void mousePressed()
 	{
@@ -45,15 +68,18 @@ public class Gantt extends PApplet
 	}
 
 	
-	
 	public void setup() 
 	{
+		leftMarg = width / 6;
+		marg = width / 20;
 		loadTasks();
 		printTasks();
 	}
 	
 	public void draw()
 	{			
+		colorMode(HSB);
 		background(0);
+		displayTasks();
 	}
 }
