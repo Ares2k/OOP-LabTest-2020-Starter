@@ -3,7 +3,6 @@ package ie.tudublin;
 import processing.core.PApplet;
 import processing.data.Table;
 import processing.data.TableRow;
-
 import java.util.ArrayList;
 
 public class Gantt extends PApplet
@@ -55,11 +54,29 @@ public class Gantt extends PApplet
 			line(c, marg, c, height - marg);
 			text(i, c, marg * 0.8f);
 		}
+
+		for(int i=0;  i<tasks.size(); i++) {
+
+			fill(255);
+			x = map(i, 0, tasks.size(), 2 * marg, height - marg);
+			text(tasks.get(i).getTask(), marg, x);
+
+			noStroke();
+			float color = map(i, 0, tasks.size(), 0, 255);
+
+			fill(color, 255, 255);
+			rectStart = map(tasks.get(i).getStart(), 1, 30, leftMarg, width - marg);
+			rectEnd = map(tasks.get(i).getEnd(), 1, 30, leftMarg, width - marg);
+			rectWidth = (int) (rectEnd - rectStart);
+
+			float s = (rectHeight / 2);
+			rect(rectStart, x - s, rectWidth, rectHeight, radius);
+		}
 	}
 	
 	public void mousePressed()
 	{
-		println("Mouse pressed");	
+		println("Mouse pressed");
 	}
 
 	public void mouseDragged()
