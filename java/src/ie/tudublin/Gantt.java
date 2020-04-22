@@ -90,7 +90,7 @@ public class Gantt extends PApplet
 	{
 		println("Mouse pressed");
 		
-		float rectHeight = 50;
+		float rectHeight = 30;
 		float x1, x2, y1, y2;
 		float size = 20;
 
