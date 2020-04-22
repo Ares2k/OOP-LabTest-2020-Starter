@@ -149,7 +149,7 @@ public class Gantt extends PApplet
 	}
 
 	//reset mouse position when button is released
-	public void mouseResetPos() {
+	public void mouseReleased() {
 
 		leftSidePressed = -1;
 		rightSidePressed = -1;
