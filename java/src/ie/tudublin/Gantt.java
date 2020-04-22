@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Gantt extends PApplet
 {	
 
+	//declaring member variables
 	public ArrayList<Task> tasks = new ArrayList<Task>();
 	private int leftSidePressed = -1;
 	private int rightSidePressed = -1;
@@ -40,16 +41,26 @@ public class Gantt extends PApplet
 
 	public void displayTasks() {
 
-		float rectHeight = 50;
+		float rectHeight = 30;
 		float rectStart, rectEnd, rectWidth;
-		float fontSize = 0.8f;
-		float radius = 6;
+		float fontSize = 0.85f;
+		float radius = 5;
 
+		textAlign(CENTER);
 		stroke(255);
 		fill(255);
-		textAlign(CENTER);
 
 		for(int i=1; i<=days; i++) {
+
+			//set every 2nd line to slightly darker 
+			if(i % 2 == 0) {
+
+				stroke(102);
+
+			} else {
+
+				stroke(255);
+			}
 
 			float c = map(i, 1, 30, leftMarg, width - marg);
 			line(c, marg, c, height - marg);
@@ -135,6 +146,13 @@ public class Gantt extends PApplet
 				task.setEnd(date);
 			}
 		}
+	}
+
+	//reset mouse position when button is released
+	public void mouseResetPos() {
+
+		leftSidePressed = -1;
+		rightSidePressed = -1;
 	}
 
 	public void setup() 
